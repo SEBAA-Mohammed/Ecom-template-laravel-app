@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 use Livewire\Component;
 
-class Cart extends Component
+class Carte extends Component
 {
     public $cart;
 
@@ -17,8 +18,13 @@ class Cart extends Component
 
     public function addToCart($productData)
     {
-        Cart::add($productData->id, $productData->designation, $productData->quantite, $productData->tva, $productData->image, $productData->prix_ht);
+        Cart::add(['id' => $productData['id'], 'designation' =>  $productData['designation'], 'quantite' =>  $productData['quantite'], 'tva' =>  $productData['tva'], 'image' =>  $productData['image'], 'prix_ht' =>  $productData['prix_ht']]);
+
+        $this->cart = Cart::content();
+
+        $this->emit('cartUpdated');
     }
+
 
 
     public function updateCart($rowId, $quantity)

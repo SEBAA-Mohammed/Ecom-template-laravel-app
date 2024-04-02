@@ -91,6 +91,7 @@
                                                             'tva' => $produit->tva,
                                                             'image' => $produit->image,
                                                         ];
+
                                                     @endphp
 
                                                     <a wire:click="addToCart({{ json_encode($productData) }})"
