@@ -6,7 +6,7 @@
 <body class="biolife-body">
 
     <!-- Preloader -->
-    @include('layouts.preloader')
+    {{-- @include('layouts.preloader') --}}
 
 
     <!-- HEADER -->

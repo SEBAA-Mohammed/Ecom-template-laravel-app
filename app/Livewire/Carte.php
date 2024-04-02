@@ -18,32 +18,38 @@ class Carte extends Component
 
     public function addToCart($productData)
     {
-        Cart::add(['id' => $productData['id'], 'designation' =>  $productData['designation'], 'quantite' =>  $productData['quantite'], 'tva' =>  $productData['tva'], 'image' =>  $productData['image'], 'prix_ht' =>  $productData['prix_ht']]);
+        $productId = $productData['id'];
+        $productName = $productData['designation'];
+        $quantity = $productData['quantite'];
+        $price = $productData['prix_ht'];
+
+        Cart::add($productId, $productName, $quantity, $price);
 
         $this->cart = Cart::content();
-
-        $this->emit('cartUpdated');
     }
 
 
 
-    public function updateCart($rowId, $quantity)
-    {
-        Cart::update($rowId, $quantity);
 
-        $this->cart = Cart::content();
 
-        $this->emit('cartUpdated');
-    }
+    // public function updateCart($rowId, $quantity)
+    // {
+    //     Cart::update($rowId, $quantity);
 
-    public function removeFromCart($rowId)
-    {
-        Cart::remove($rowId);
+    //     $this->cart = Cart::content();
 
-        $this->cart = Cart::content();
+    //     $this->emit('cartUpdated');
+    // }
 
-        $this->emit('cartUpdated');
-    }
+    // public function removeFromCart($rowId)
+    // {
+    //     Cart::remove($rowId);
+
+    //     $this->cart = Cart::content();
+
+    //     $this->emit('cartUpdated');
+    // }
+
 
     public function render()
     {

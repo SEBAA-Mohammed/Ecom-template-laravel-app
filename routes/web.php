@@ -24,5 +24,6 @@ Route::get('/login', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+// Route::post('/cart', [App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
 
 Route::resource('produits', ProduitController::class);

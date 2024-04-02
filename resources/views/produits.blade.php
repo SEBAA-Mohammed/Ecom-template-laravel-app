@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @if (session('message'))
+        <div>{{ session('message') }}</div>
+    @endif
     <div class="page-contain category-page no-sidebar">
         <div class="container">
             <div class="row">
@@ -99,7 +102,16 @@
                                                         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
                                                     </a>
 
-
+                                                    {{-- <form action="{{ route('cart.store') }}" method="POST">
+                                                        @csrf
+                                                        <input type="text" value="{{ $produit->id }}" name="id"
+                                                            hidden>
+                                                        <input type="number" value="1" name="quantite" hidden>
+                                                        <button type="submit" class="btn add-to-cart-btn">
+                                                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to
+                                                            Cart
+                                                        </button>
+                                                    </form> --}}
                                                 </div>
                                             </div>
                                         </div>
