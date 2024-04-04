@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -26,11 +26,11 @@ class LoginController extends Controller
         return redirect()->back()->with('error', 'Invalid credentials');
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->invalidate();
-        return redirect()->route('home');
+        Auth::logout();
+        Session::flush();
+
+        return redirect()->route('login.create');
     }
 }
