@@ -103,15 +103,14 @@
                                                     </a>
 
                                                     {{-- <form action="{{ route('cart.store') }}" method="POST">
-                                                        @csrf
-                                                        <input type="text" value="{{ $produit->id }}" name="id"
-                                                            hidden>
-                                                        <input type="number" value="1" name="quantite" hidden>
-                                                        <button type="submit" class="btn add-to-cart-btn">
-                                                            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to
-                                                            Cart
-                                                        </button>
-                                                    </form> --}}
+                                            @csrf
+                                            <input type="text" value="{{ $produit->id }}" name="id" hidden>
+                                            <input type="number" value="1" name="quantite" hidden>
+                                            <button type="submit" class="btn add-to-cart-btn">
+                                                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to
+                                                Cart
+                                            </button>
+                                            </form> --}}
                                                 </div>
                                             </div>
                                         </div>

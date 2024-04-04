@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +17,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'create'])->name('login.create');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+// Route::post('/loginout', [LoginController::class, 'destroy'])->name('logout');
+
 Route::get('/contact', function () {
     return view('contact');
 });
 // Route::post('/cart', [App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
 
 Route::resource('produits', ProduitController::class);
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->name('checkout');

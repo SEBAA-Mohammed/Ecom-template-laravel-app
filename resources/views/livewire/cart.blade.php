@@ -30,12 +30,11 @@
                                         </div>
                                         <div class="qty">
                                             <label>Qty: {{ $item->quantite }} </label>
-
                                         </div>
                                     </div>
                                     <div class="action">
-                                        <a href="#" class="edit"><i class="fa fa-pencil"
-                                                aria-hidden="true"></i></a>
+                                        <a wire:click="updateCart({{ [$item->id, $item->quantite] }})" class="edit"><i
+                                                class="fa fa-pencil" aria-hidden="true"></i></a>
                                         <a href="#" class="remove"><i class="fa fa-trash-o"
                                                 aria-hidden="true"></i></a>
                                     </div>
@@ -47,9 +46,14 @@
                     @endif
                 </ul>
                 <p class="btn-control">
-                    <a href="#" class="btn view-cart">view cart</a>
-                    <a href="#" class="btn">checkout</a>
+                    <a href="#" class="btn view-cart">View Cart</a>
+                    @auth
+                        <a href="{{ route('checkout') }}" class="btn">Checkout</a>
+                    @else
+                        <span class="disabled-link">Checkout</span>
+                    @endauth
                 </p>
+
             </div>
         </div>
     </div>

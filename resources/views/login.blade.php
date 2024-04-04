@@ -5,23 +5,22 @@
         <!-- Main content -->
         <div id="main-content" class="main-content">
             <div class="container">
-
                 <div class="row">
-
                     <!--Form Sign In-->
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="signin-container">
-                            <form action="#" name="frm-login" method="post">
+                            <form action="{{ route('login.store') }}" name="frm-login" method="post">
+                                @csrf
                                 <p class="form-row">
                                     <label for="fid-name">Email Address:<span class="requite">*</span></label>
-                                    <input type="text" id="fid-name" name="name" value="" class="txt-input">
+                                    <input type="text" id="fid-name" name="email" value="" class="txt-input">
                                 </p>
                                 <p class="form-row">
                                     <label for="fid-pass">Password:<span class="requite">*</span></label>
-                                    <input type="email" id="fid-pass" name="email" value="" class="txt-input">
+                                    <input type="password" id="fid-pass" name="password" value="" class="txt-input">
                                 </p>
                                 <p class="form-row wrap-btn">
-                                    <button class="btn btn-submit btn-bold" type="submit">sign in</button>
+                                    <button class="btn btn-submit btn-bold" type="submit">Sign in</button>
                                     <a href="#" class="link-to-help">Forgot your password</a>
                                 </p>
                             </form>
@@ -45,12 +44,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 @endsection
