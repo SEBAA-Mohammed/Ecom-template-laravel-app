@@ -16,7 +16,7 @@
                     <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
                 </ul>
                 @auth
-                    <form action="{{ route('home') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button>Logout</button>
                     </form>

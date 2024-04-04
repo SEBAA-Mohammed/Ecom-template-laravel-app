@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'create'])->name('login.create');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-// Route::post('/loginout', [LoginController::class, 'destroy'])->name('logout');
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::get('/contact', function () {
     return view('contact');
