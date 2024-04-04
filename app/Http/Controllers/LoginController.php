@@ -31,6 +31,6 @@ class LoginController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->invalidate();
-        return to_route('home');
+        return redirect()->route('home');
     }
 }
