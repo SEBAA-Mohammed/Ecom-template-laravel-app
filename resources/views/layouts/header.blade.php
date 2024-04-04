@@ -77,13 +77,7 @@
 
                         <livewire:carte />
 
-                        <div class="mobile-menu-toggle">
-                            <a class="btn-toggle" data-object="open-mobile-menu" href="javascript:void(0)">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>

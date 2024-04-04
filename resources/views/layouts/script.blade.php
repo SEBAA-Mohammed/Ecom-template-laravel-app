@@ -6,4 +6,9 @@
 <script src="assets/js/slick.min.js"></script>
 <script src="assets/js/biolife.framework.js"></script>
 <script src="assets/js/functions.js"></script>
+<script>
+    function addToCart(productId) {
+        Livewire.emit('addToCart', productId);
+    }
+</script>
 @livewireScripts
