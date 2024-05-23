@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Produit;
 
@@ -14,21 +15,29 @@ class Products extends Component
 
     public function mount()
     {
-        $this->products = Produit::all();
+        $this->products = Session::get('products', []);
     }
 
-    public function addToCart($productId)
+    public function addProductToCart($id)
     {
-        return;
-        //     $product = Produit::findOrFail($productId);
+        $product = Produit::findOrFail($id);
+        $products = Session::get('products', []);
+        $products[] = $product;
+        Session::put('products', $products);
+        $this->products = $products;
 
-        //     Cart::add([
-        //         'id' => $product->id,
-        //         'name' => $product->designation,
-        //         'qty' => 1,
-        //         'price' => $product->prix_ht,
-        //         'image' => $product->image,
-        //     ]);
+        $this->dispatch('productAddedToCart', $products);
+    }
+
+    public function updateQuantity($index, $quantity)
+    {
+        $products = Session::get('products', []);
+        if (isset($products[$index])) {
+            $products[$index]['quantity'] = $quantity;
+            $products[$index]['total_price'] = $products[$index]['price'] * $quantity;
+            Session::put('products', $products);
+            $this->products = $products;
+        }
     }
 
     public function render(Request $request)

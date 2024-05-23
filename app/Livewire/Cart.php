@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Session;
 
 class Cart extends Component
 {
@@ -11,67 +12,52 @@ class Cart extends Component
     public $total = 0;
     public $productQuantities = [];
 
-    // #[On('cart-updated')]
-    // public function mount()
-    // {
-    //     $this->cartCount = Cart::count();
-    //     $this->products = Cart::content();
-    //     $this->total = Cart::total();
+    protected $listeners = ['productAddedToCart' => 'updateCart'];
 
-    //     $this->productQuantities = $this->getProductQuantities();
-    // }
-
-    private function getProductQuantities()
+    public function mount()
     {
-        $quantities = [];
-        foreach ($this->products as $product) {
-            $quantities[$product->id] = $product->quantity;
-        }
-        return $quantities;
+        $this->products = Session::get('products', []);
+        $this->calculateCartDetails();
     }
 
-    // public function removeCart($id)
-    // {
-    //     Cart::remove($id);
+    public function removeProduct($id)
+    {
+        $products = Session::get('products', []);
 
-    //     $this->cartCount = Cart::getContent()->count();
-    //     $this->products = Cart::getContent();
-    //     $this->total = Cart::getTotal();
+        foreach ($products as $key => $product) {
+            if ($product['id'] == $id) {
+                unset($products[$key]);
+                $products = array_values($products);
+                Session::put('products', $products);
+                $this->products = $products;
+                $this->calculateCartDetails();
+                break;
+            }
+        }
+    }
 
-    //     $this->dispatch('cart-updated');
-    // }
+    public function calculateCartDetails()
+    {
+        $this->cartCount = count($this->products);
+        $this->total = array_sum(array_column($this->products, 'price'));
+    }
 
-    // public function clearAllCart()
-    // {
-    //     Cart::clear();
-
-    //     $this->dispatch('swal', ['Votre panier est vide !']);
-
-    //     $this->cartCount = Cart::getContent()->count();
-    //     $this->products = Cart::getContent();
-    //     $this->total = Cart::getTotal();
-
-    //     $this->dispatch('cart-updated');
-    // }
-
-    // public function updateQuantity($rowId, $quantity)
-    // {
-    //     Cart::update($rowId, $quantity);
-
-    //     $this->mount();
-
-    //     $this->dispatch('cart-updated');
-    // }
+    public function updateCart($products)
+    {
+        $this->products = $products;
+        $this->calculateCartDetails();
+    }
 
     public function render()
     {
-        return view(
-            'livewire.cart',
-            // [
-            //     'cartCount' => $this->cartCount,
-            //     'products' => $this->products,
-            //     'total' => $this->total
-            // ]
-        );
+        return view('livewire.cart', ['products' => $this->products]);
+        // return view(
+        //     'livewire.cart',
+        // [
+        //     'cartCount' => $this->cartCount,
+        //     'products' => $this->products,
+        //     'total' => $this->total
+        // ]
+        // );
     }
 }

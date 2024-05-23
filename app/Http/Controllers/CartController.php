@@ -7,6 +7,11 @@ use App\Models\Produit;
 
 class CartController extends Controller
 {
+    public function index()
+    {
+        return view('carta');
+    }
+
     // public function store(Request $request)
     // {
     //     $product = Produit::findOrFail($request->input('id'));

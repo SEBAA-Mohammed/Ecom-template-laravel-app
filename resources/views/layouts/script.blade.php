@@ -7,8 +7,8 @@
 <script src="assets/js/biolife.framework.js"></script>
 <script src="assets/js/functions.js"></script>
 <script>
-    function addToCart(productId) {
-        Livewire.emit('addToCart', productId);
+    function addProductToCart(productId) {
+        Livewire.emit('addProductToCart', productId);
     }
 </script>
 @livewireScripts
