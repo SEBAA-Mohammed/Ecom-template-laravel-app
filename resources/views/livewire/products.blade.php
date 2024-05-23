@@ -54,8 +54,8 @@
                     <div class="contain-product layout-default">
                         <div class="product-thumb">
                             <a href="#" class="link-to-product">
-                                <img src="{{ $produit->image }}" alt="dd" width="270" height="270"
-                                    class="product-thumnail">
+                                <img src="{{ $produit->image }}" alt="dd" style="width: 270px; height: 270px;"
+                                    class="product-thumbnail">
                             </a>
                         </div>
                         <div class="info">
