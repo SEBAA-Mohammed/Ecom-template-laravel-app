@@ -11,7 +11,7 @@
         <div class="cart-content">
             <div class="cart-inner">
                 <ul class="products">
-                    @if ($products->isNotEmpty())
+                    @if (!empty($products))
                         @foreach ($products as $product)
                             <li wire:key="{{ $product->id }}">
                                 <div class="minicart-item">
