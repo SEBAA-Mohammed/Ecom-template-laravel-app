@@ -16,11 +16,11 @@ class SousFamilleSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 40) as $index) {
+        foreach (range(1, 20) as $index) {
             DB::table('sous_familles')->insert([
                 'libelle' => $faker->word,
                 'image' => $faker->imageUrl(),
-                'famille_id' => $faker->numberBetween(1, 3), // Assuming 3 families exist
+                'famille_id' => $faker->numberBetween(1, 5), // Assuming 3 families exist
             ]);
         }
     }
