@@ -3,7 +3,8 @@
         <div class="container">
             <div class="top-bar left">
                 <ul class="horizontal-menu">
-                    <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>mohammedsebaa2610@gmail.com</a>
+                    <li><a href="mailto:mohammedsebaa2610@gmail.com"><i class="fa fa-envelope"
+                                aria-hidden="true"></i>mohammedsebaa2610@gmail.com</a>
                     </li>
                     <li><a href="#">Free Shipping for all Order of $99</a></li>
                 </ul>
@@ -75,8 +76,7 @@
                             </div>
                         </div>
 
-                        <livewire:carte />
-
+                        <livewire:cart />
 
                     </div>
                 </div>
