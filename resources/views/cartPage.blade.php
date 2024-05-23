@@ -2,15 +2,15 @@
 @section('content')
     <div class="page-contain shopping-cart">
         @php
-            // $products = session('products');
-            $products = [
-                [
-                    'prix_ht' => 120,
-                    'image' => 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
-                    'designation' => 'xhi haja',
-                    'qte' => 1,
-                ],
-            ];
+            $products = session('products');
+            // $products = [
+            //     [
+            //         'prix_ht' => 120,
+            //         'image' => 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
+            //         'designation' => 'xhi haja',
+            //         'qte' => 1,
+            //     ],
+            // ];
             $total = 0;
             if ($products) {
                 foreach ($products as $product) {
