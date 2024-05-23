@@ -2,10 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Produit;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
 use Livewire\Component;
+use Illuminate\Http\Request;
+use App\Models\Produit;
 
 class Products extends Component
 {
@@ -13,26 +12,24 @@ class Products extends Component
     public $addedProductId;
     public $addedProductName;
 
-
     public function mount()
     {
         $this->products = Produit::all();
     }
+
     public function addToCart($productId)
     {
-        $product = Produit::findOrFail($productId);
+        return;
+        //     $product = Produit::findOrFail($productId);
 
-        Cart::add([
-            'id' => $product->id,
-            'name' => $product->designation,
-            'qty' => 1,
-            'price' => $product->prix_ht,
-            'image' => $product->image,
-        ]);
+        //     Cart::add([
+        //         'id' => $product->id,
+        //         'name' => $product->designation,
+        //         'qty' => 1,
+        //         'price' => $product->prix_ht,
+        //         'image' => $product->image,
+        //     ]);
     }
-
-
-
 
     public function render(Request $request)
     {

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 Route::get('/contact', function () {
     return view('contact');
 });
-// Route::post('/cart', [App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
+
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 
 Route::resource('produits', ProduitController::class);
 
