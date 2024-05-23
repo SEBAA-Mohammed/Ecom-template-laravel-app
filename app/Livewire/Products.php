@@ -10,8 +10,6 @@ use App\Models\Produit;
 class Products extends Component
 {
     public $products;
-    public $addedProductId;
-    public $addedProductName;
 
     public function mount()
     {
@@ -20,24 +18,16 @@ class Products extends Component
 
     public function addProductToCart($id)
     {
-        $product = Produit::findOrFail($id);
+        $product = Produit::findOrFail($id)->toArray();
+        $product['quantity'] = 1;
+        $product['total_price'] = $product['prix_ht'] * $product['quantity'];
+
         $products = Session::get('products', []);
         $products[] = $product;
         Session::put('products', $products);
         $this->products = $products;
 
         $this->dispatch('productAddedToCart', $products);
-    }
-
-    public function updateQuantity($index, $quantity)
-    {
-        $products = Session::get('products', []);
-        if (isset($products[$index])) {
-            $products[$index]['quantity'] = $quantity;
-            $products[$index]['total_price'] = $products[$index]['price'] * $quantity;
-            Session::put('products', $products);
-            $this->products = $products;
-        }
     }
 
     public function render(Request $request)

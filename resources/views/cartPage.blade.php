@@ -3,20 +3,6 @@
     <div class="page-contain shopping-cart">
         @php
             $products = session('products');
-            // $products = [
-            //     [
-            //         'prix_ht' => 120,
-            //         'image' => 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
-            //         'designation' => 'xhi haja',
-            //         'qte' => 1,
-            //     ],
-            // ];
-            $total = 0;
-            if ($products) {
-                foreach ($products as $product) {
-                    $total += $product['prix_ht'] * $product['qte'];
-                }
-            }
         @endphp
 
         <!-- Main content -->
@@ -98,9 +84,12 @@
                                                     <td class="product-quantity" data-title="Quantity">
                                                         <div class="quantity-box type1">
                                                             <div class="qty-input">
-                                                                <input type="text" name="qty12554"
-                                                                    value="{{ $produit['qte'] }}" data-max_value="20"
-                                                                    data-min_value="1" data-step="1" readonly>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $produit['quantity'] }}"
+                                                                    wire:model="productQuantities.{{ $produit['id'] }}"
+                                                                    wire:change="updateQuantity('{{ $produit['id'] }}', $event.target.value)"
+                                                                    data-max_value="20" data-min_value="1" data-step="1"
+                                                                    readonly />
                                                                 <a href="#" class="qty-btn btn-up"><i
                                                                         class="fa fa-caret-up" aria-hidden="true"></i></a>
                                                                 <a href="#" class="qty-btn btn-down"><i
@@ -111,7 +100,7 @@
                                                     <td class="product-subtotal" data-title="Total">
                                                         <div class="price price-contain">
                                                             <ins><span class="price-amount"><span
-                                                                        class="currencySymbol">£</span>{{ $produit['prix_ht'] * $produit['qte'] }}</span></ins>
+                                                                        class="currencySymbol">£</span>{{ $produit['prix_ht'] * $produit['quantity'] }}</span></ins>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -138,7 +127,8 @@
                             <div class="shpcart-subtotal-block">
                                 <div class="subtotal-line">
                                     <b class="stt-name">Total <span class="sub">({{ count($products) }} items)</span></b>
-                                    <span class="stt-price">{{ $total }} $ </span>
+                                    {{-- <span class="stt-price">{{ $product['total_price'] }}$ </span> --}}
+                                    <span class="stt-price">0$</span>
                                 </div>
                                 <div class="tax-fee">
                                     <p class="title">Est. Taxes & Fees</p>
