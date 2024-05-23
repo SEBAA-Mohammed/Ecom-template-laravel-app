@@ -37,3 +37,7 @@ Route::resource('produits', ProduitController::class);
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
+
+Route::get('/cartPage', function () {
+    return view('cartPage');
+})->name('cartPage');
