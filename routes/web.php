@@ -28,6 +28,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+
 Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 
 Route::resource('produits', ProduitController::class);

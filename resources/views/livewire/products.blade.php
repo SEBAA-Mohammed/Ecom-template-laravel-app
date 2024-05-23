@@ -1,7 +1,5 @@
 <div id="main-content" class="main-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
     <div class="product-category grid-style ">
-
         <div id="top-functions-area" class="top-functions-area">
             <div class="flt-item to-left group-on-mobile">
                 <span class="flt-title">Refine</span>
@@ -76,7 +74,8 @@
                                 <p class="message">All products are carefully selected to ensure food
                                     safety.</p>
                                 <div class="buttons">
-                                    <a wire:click="addToCart({{ $produit->id }})" class="btn add-to-cart-btn">
+                                    <a wire:click="addProductToCart({{ $produit->id }})" {{-- wire:click="addProductToCart({{ $produit->id }})"  --}}
+                                        class="btn add-to-cart-btn">
                                         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
                                     </a>
                                 </div>
@@ -130,9 +129,4 @@
             @endif
         </ul>
     </div>
-
-
-
-
-
 </div>
