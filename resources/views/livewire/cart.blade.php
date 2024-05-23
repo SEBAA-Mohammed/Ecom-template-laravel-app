@@ -48,7 +48,7 @@
                     @endif
                 </ul>
                 <p class="btn-control">
-                    <a href="#" class="btn view-cart">View Cart</a>
+                    <a href="{{ route('cartPage') }}" class="btn view-cart">View Cart</a>
                     @auth
                         <a href="{{ route('checkout') }}" class="btn">Checkout</a>
                     @else
